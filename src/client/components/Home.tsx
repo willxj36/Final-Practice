@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
-interface TemplateProps {}
+interface HomeProps {}
 
-const Template = () => {
-
-    const [state, setState] = useState(null);
+const Home = () => {
 
     // useEffect(() => {
     //     (async () => {
@@ -16,9 +14,9 @@ const Template = () => {
     // useEffect(() => {}, []);
 
     return(
-        <div>Template</div>
+        <div>Home</div>
     )
 
 }
 
-export default Template;
+export default Home;

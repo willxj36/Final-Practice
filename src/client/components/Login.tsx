@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
-interface TemplateProps {}
+interface LoginProps {
+    loggedIn: boolean,
+    setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-const Template = () => {
-
-    const [state, setState] = useState(null);
+const Login = ({ loggedIn, setLoggedIn }) => {
 
     // useEffect(() => {
     //     (async () => {
@@ -16,9 +17,9 @@ const Template = () => {
     // useEffect(() => {}, []);
 
     return(
-        <div>Template</div>
+        <div>Login</div>
     )
 
 }
 
-export default Template;
+export default Login;
