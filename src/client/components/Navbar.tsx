@@ -3,12 +3,9 @@ import { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 
-interface NavbarProps extends RouteComponentProps {
-    loggedIn: boolean,
-    setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
-}
+interface NavbarProps extends RouteComponentProps {}
 
-const Navbar: React.FC<NavbarProps> = ({ history, loggedIn, setLoggedIn }) => {
+const Navbar: React.FC<NavbarProps> = ({ history }) => {
 
     // useEffect(() => {
     //     (async () => {
