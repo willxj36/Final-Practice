@@ -16,22 +16,20 @@ const Register: React.FC = () => {
         token ? history.push('/books') : null
     }, []);
 
-    const handleRegister = async () => {
-        await register(email, password, name);
+    const handleRegister = () => {
+        register(email, password, name);
         history.push('/books');
     }
 
     return(
         <div>
-            <form>
-                <label htmlFor="name">Name</label>
-                <input value={name} onChange={(e) => setName(e.currentTarget.value)} type="text" name="name" id="name"/>
-                <label htmlFor="email">Email</label>
-                <input value={email} onChange={(e) => setEmail(e.currentTarget.value)} type="text" name="email" id="email"/>
-                <label htmlFor="password">Password</label>
-                <input value={password} onChange={(e) => setPassword(e.currentTarget.value)} type="password" name="password" id="password"/>
-                <button onClick={handleRegister} className="btn btn-primary">Register</button>
-            </form>
+            <label htmlFor="name">Name</label>
+            <input onChange={(e) => setName(e.currentTarget.value)} type="text" name="name" id="name"/>
+            <label htmlFor="email">Email</label>
+            <input onChange={(e) => setEmail(e.currentTarget.value)} type="text" name="email" id="email"/>
+            <label htmlFor="password">Password</label>
+            <input onChange={(e) => setPassword(e.currentTarget.value)} type="password" name="password" id="password"/>
+            <button onClick={handleRegister} className="btn btn-primary">Register</button>
         </div>
     )
 

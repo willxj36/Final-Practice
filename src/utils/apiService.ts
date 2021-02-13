@@ -1,3 +1,9 @@
+export let AccessToken: string = localStorage.getItem('token') || null;
+export let User: any = {
+    userid: localStorage.getItem('userid') || null,
+    role: localStorage.getItem('role') || null
+};
+
 const apiService = async <T = any>(uri: string, method: string = 'GET', body?: {}) => {
     const headers = new Headers();
     const options: IOptions = {
@@ -43,11 +49,15 @@ interface IOptions {
     [key: string]: any;
 }
 
-export let AccessToken: string = localStorage.getItem('token') || null;
-export let User: any = {
-    userid: localStorage.getItem('userid') || null,
-    role: localStorage.getItem('role') || null
-};
+
+export const SetAccessToken = (token: string, user: {userid: undefined, role: 'admin'}) => {
+    AccessToken = token;
+    User = user;
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('userid', User.userid);
+    localStorage.setItem('role', User.role);
+}
 
 export const login = async (email: string, password: string) => {
     try {
@@ -57,14 +67,6 @@ export const login = async (email: string, password: string) => {
             password
         });
         if(result) {
-            const SetAccessToken = (token: string, user: {userid: undefined, role: 'admin'}) => {
-                AccessToken = token;
-                User = user;
-            
-                localStorage.setItem('token', token);
-                localStorage.setItem('userid', User.userid);
-                localStorage.setItem('role', User.role);
-            }
             SetAccessToken(result.token, {userid: result.userid, role: result.role});
         } else {
             alert("Incorrect login info, check your spelling");
@@ -84,15 +86,9 @@ export const register = async (email: string, password: string, name: string) =>
             password
         });
         if(result) {
-            const SetAccessToken = (token: string, user: {userid: undefined, role: 'admin'}) => {
-                AccessToken = token;
-                User = user;
-            
-                localStorage.setItem('token', token);
-                localStorage.setItem('userid', User.userid);
-                localStorage.setItem('role', User.role);
-            }
             SetAccessToken(result.token, {userid: result.userid, role: result.role});
+        } else {
+            return;
         }
     } catch (e) {
         console.log(e);

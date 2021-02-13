@@ -5,7 +5,7 @@ import logoutRouter from './logout';
 
 const router = express.Router();
 
-router.use('/reqister', registerRouter)
+router.use('/register', registerRouter)
 router.use('/login', loginRouter)
 router.use('/logout', logoutRouter)
 

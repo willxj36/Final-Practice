@@ -19,15 +19,4 @@ router.get('/:id?', async (req, res) => { //all other methods same, just change 
     }
 })
 
-router.post('/', async (req, res) => { //all other methods same, just change router.method
-    try {
-        let valuesObj = req.body;
-        let response = await db.Users.post(valuesObj);
-        res.json(response);
-    } catch (e) {
-        console.log(e);
-        res.status(500).json({message: 'failed at the router'});
-    }
-})
-
 export default router;

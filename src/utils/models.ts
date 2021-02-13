@@ -20,6 +20,7 @@ export interface User {
     id?: number,
     email?: string,
     hash?: string,
+    password?: string,
     role?: string,
     _created?: Date
 }
