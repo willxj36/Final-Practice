@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Login from './components/Login';
+import Register from './components/Register';
+import Books from './components/Books';
 
 const App = () => {
 
@@ -18,12 +20,12 @@ const App = () => {
 	return (
 		<>
 		<Router>
-			<Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+			<Navbar />
 				<Switch>
 					<Route exact path='/' component={Home} />
-					<Route exact path='/login'>
-						<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-					</Route>
+					<Route exact path='/login' component={Login} />
+					<Route exact path='/register' component={Register} />
+					<Route exact path='/books' component={Books} />
 				</Switch>
 			</Router>
 		</>

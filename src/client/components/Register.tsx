@@ -1,36 +1,40 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import { login } from '../../utils/apiService';
+import { register } from '../../utils/apiService';
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
 
     const history = useHistory();
 
+    const [name, setName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
     useEffect(() => {
         let token = localStorage.getItem('token');
-        token ? history.push('/') : null
+        token ? history.push('/books') : null
     }, []);
 
-    const handleLogin = async () => {
-        await login(email, password);
+    const handleRegister = async () => {
+        await register(email, password, name);
+        history.push('/books');
     }
 
     return(
         <div>
             <form>
+                <label htmlFor="name">Name</label>
+                <input value={name} onChange={(e) => setName(e.currentTarget.value)} type="text" name="name" id="name"/>
                 <label htmlFor="email">Email</label>
                 <input value={email} onChange={(e) => setEmail(e.currentTarget.value)} type="text" name="email" id="email"/>
                 <label htmlFor="password">Password</label>
                 <input value={password} onChange={(e) => setPassword(e.currentTarget.value)} type="password" name="password" id="password"/>
-                <button onClick={handleLogin} className="btn btn-primary">Log In</button>
+                <button onClick={handleRegister} className="btn btn-primary">Register</button>
             </form>
         </div>
     )
 
 }
 
-export default Login;
+export default Register;

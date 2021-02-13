@@ -3,18 +3,27 @@ import db from '../../db';
 
 const router = express.Router();
 
-router.get('/', (req, res) => { //all other methods same, just change router.method
+router.get('/:id?', async (req, res) => { //all other methods same, just change router.method
     try {
-        res.json({message: 'test success'});
+        let id = Number(req.params.id);
+        if(id) {
+            let [user] = await db.Users.getOne('id', id);
+            res.json(user);
+        } else {
+            let users = await db.Users.getAll();
+            res.json(users);
+        }
     } catch (e) {
         console.log(e);
         res.status(500).json({message: 'failed at the router'});
     }
 })
 
-router.post('/', (req, res) => { //all other methods same, just change router.method
+router.post('/', async (req, res) => { //all other methods same, just change router.method
     try {
-        res.json({message: 'test success'});
+        let valuesObj = req.body;
+        let response = await db.Users.post(valuesObj);
+        res.json(response);
     } catch (e) {
         console.log(e);
         res.status(500).json({message: 'failed at the router'});

@@ -1,20 +1,25 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 interface HomeProps {}
 
 const Home = () => {
 
-    // useEffect(() => {
-    //     (async () => {
+    const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
-    //     })();
-    // }, []);
-
-    // useEffect(() => {}, []);
+    useEffect(() => {
+        let user = localStorage.getItem('token');
+        user ? setLoggedIn(true) : setLoggedIn(false);
+    }, []);
 
     return(
-        <div>Home</div>
+        <div className="container">
+            <div className="wrapper">
+                <h1>Welcome to the Bookstore!</h1>
+                { loggedIn ? <Link to='/login' className="btn btn-success m-5">Login</Link> : null }
+            </div>
+        </div>
     )
 
 }

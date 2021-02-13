@@ -12,7 +12,7 @@ passport.use(new LocalStrategy.Strategy({
     session: false
 }, async (email, password, done) => {
     try {
-        let [user]: any = await db.Authors.getOneEmail(email);
+        let [user]: any = await db.Users.getOne('email', email);
         if(user && comparePass(password, user.password)) {
             delete user.password; //extra security to remove the unhashed password once it's been checked and is no longer needed
             done(null, user);

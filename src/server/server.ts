@@ -1,7 +1,6 @@
 import * as express from 'express';
-import morgan from 'morgan';
-import path from 'path';
-import passport from 'passport';
+import * as path from 'path';
+import * as passport from 'passport';
 import './middleware/localstrategy';
 import './middleware/bearerstrategy';
 
@@ -9,7 +8,6 @@ import routes from './routes';
 
 const app = express();
 
-app.use(morgan('dev'));
 app.use(express.static('public'));
 app.use(express.json());
 app.use(passport.initialize());

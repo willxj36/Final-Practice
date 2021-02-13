@@ -1,17 +1,17 @@
 import * as express from 'express';
-import db from '.,/../db';
+import db from '../../db';
 
 const router = express.Router();
 
-router.get('/:id?', (req, res) => { //all other methods same, just change router.method
-    let id = req.params.id;
+router.get('/:id?', async (req, res) => { //all other methods same, just change router.method
+    let name = req.body.name;
     try {
-        if(id) {
-    
-            res.json({message: 'test get one'});
+        if(name) {
+            let [category] = await db.Categories.getOne(name) ;
+            res.json(category);
         } else {
-
-            res.json({message: 'test get all'})
+            let categories = await db.Categories.getAll();
+            res.json(categories);
         }
     } catch (e) {
         console.log(e);

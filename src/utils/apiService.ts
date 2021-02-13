@@ -75,6 +75,31 @@ export const login = async (email: string, password: string) => {
     }
 };
 
+export const register = async (email: string, password: string, name: string) => {
+    try {
+        let url = '/auth/register'
+        let result: any = await apiService(url, 'POST', {
+            name,
+            email,
+            password
+        });
+        if(result) {
+            const SetAccessToken = (token: string, user: {userid: undefined, role: 'admin'}) => {
+                AccessToken = token;
+                User = user;
+            
+                localStorage.setItem('token', token);
+                localStorage.setItem('userid', User.userid);
+                localStorage.setItem('role', User.role);
+            }
+            SetAccessToken(result.token, {userid: result.userid, role: result.role});
+        }
+    } catch (e) {
+        console.log(e);
+        alert('Something went wrong, check error message'); 
+    }
+};
+
 export const logout = async () => {
     localStorage.clear();
     let url = `/auth/logout/${User.userid}`;

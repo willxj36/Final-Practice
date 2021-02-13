@@ -3,6 +3,7 @@ import { Request } from 'express';
 export interface Book {
     id?: number,
     categoryid?: number,
+    category?: string,
     title: string,
     author?: string,
     price?: number,

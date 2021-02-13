@@ -1,22 +1,13 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
-interface NavbarProps extends RouteComponentProps {}
+const Navbar: React.FC = () => {
 
-const Navbar: React.FC<NavbarProps> = ({ history }) => {
-
-    // useEffect(() => {
-    //     (async () => {
-
-    //     })();
-    // }, []);
-
-    // useEffect(() => {}, []);
+    const history = useHistory();
 
     return(
-        <div className="navbar navbar-primary">
+        <div className="navbar bg-dark">
             <button onClick={() => history.push('/')} className="btn btn-primary">Home</button>
             <div className="ml-auto">
                 <Link to="/books" className="btn btn-primary">Book List</Link>
